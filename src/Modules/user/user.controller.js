@@ -4,24 +4,6 @@ import { successResponse } from "../../Common/index.js"
 
 const router = Router()
 
-router.post("/signup", async(req, res) => {
-    const result = await userService.signUp(req.body)
-    return successResponse({
-        res,
-        message: result.message,
-        status: 201,
-    })
-})
-
-router.post("/login", async(req, res) => {
-    const result = await userService.login(req.body)
-    return successResponse({
-        res,
-        message: result.message,
-        status: 200,
-    })
-})
-
 router.delete("/:userId", async(req, res) => {
     const result = await userService.deleteUser(req.params.userId)
     return successResponse({
@@ -35,9 +17,9 @@ router.get("/", async(req, res) => {
     const result = await userService.getAllUsers()
     return successResponse({
         res,
-        message: result.message,
+        message: "Users retrieved successfully",
         status: 200,
-        data: result.users
+        data: result
     })
 })
 
@@ -45,9 +27,9 @@ router.get("/:userId", async(req, res) => {
     const result = await userService.getUserById(req.params.userId)
     return successResponse({
         res,
-        message: result.message,
+        message: "User retrieved successfully",
         status: 200,
-        data: result.user
+        data: result
     })
 })
 
